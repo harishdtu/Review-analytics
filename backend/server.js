@@ -36,7 +36,9 @@ app.post("/analyze", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
+app.get('/', (req, res) => {
+  res.send('API is running 🚀');
+});
 /* ─────────────────────────────────────────
    POST /analyze-category — keyword mode
    ───────────────────────────────────────── */

@@ -1,9 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Chart, DoughnutController, ArcElement, Tooltip, Legend } from "chart.js";
-import { useNavigate } from "react-router-dom";
-Chart.register(DoughnutController, ArcElement, Tooltip, Legend);
 
-const COLORS = ["#7c6fcd", "#9b8fe0", "#6254b8", "#4f43a0", "#e84a8a", "#f59e0b", "#10b981", "#3b82f6", "#ec4899"];
+Chart.register(DoughnutController, ArcElement, Tooltip, Legend);
 
 export default function Dashboard({ data, onReset }: { data: any; onReset: () => void }) {
   const chartRef  = useRef<HTMLCanvasElement>(null);

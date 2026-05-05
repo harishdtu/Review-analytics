@@ -19,7 +19,7 @@ export default function App() {
   const [compData, setCompData] = useState(null);
   const [mode, setMode] = useState("url");
   const [loadingMsg, setLoadingMsg] = useState("Analyzing...");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   // ── Single product URL analyze ──
   // handleAnalyze — URL mode, use /analyze endpoint not /analyze-category
@@ -29,7 +29,7 @@ async function handleAnalyze() {
     setError(null);
     setLoadingMsg("Scraping reviews from Amazon...");
     setView(VIEW_TYPES.LOADING);
-    const res = await fetch("http://localhost:5000/analyze", {
+    const res = await fetch("https://review-analytics-j59q.onrender.com/analyze", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ url: url.trim() }), // ✅ just send url, nothing else
@@ -56,7 +56,7 @@ async function handleAnalyze() {
       setLoadingMsg("Discovering competitors & scraping reviews... (this takes ~2 min)");
       setView(VIEW_TYPES.LOADING);
 
-      const res = await fetch("http://localhost:5000/analyze-category", {
+      const res = await fetch("https://review-analytics-j59q.onrender.com/analyze-category", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ keyword: keyword.trim() }),
@@ -70,7 +70,7 @@ async function handleAnalyze() {
 
       setCompData(data);
       setView(VIEW_TYPES.COMPETITOR);
-    } catch (err) {
+    } catch (err: any) {
       console.error("DISCOVER ERROR:", err);
       setError(err.message || "An error occurred. Please try again.");
       setView(VIEW_TYPES.INPUT);
@@ -89,6 +89,7 @@ async function handleAnalyze() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      
       <Navbar onReset={handleReset} />
 
       {view === VIEW_TYPES.INPUT && (

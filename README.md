@@ -5,7 +5,8 @@ ReviewIQ is a full-stack web application that analyzes Amazon product reviews an
 ---
 
 ## 🚀 Live Features
-
+Vercel:https://review-analytics-beta.vercel.app/
+render: https://review-analytics-j59q.onrender.com
 ### 🔍 1. Single Product Analysis
 
 * Input: Amazon product URL
